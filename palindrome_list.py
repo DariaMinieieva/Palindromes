@@ -1,5 +1,7 @@
 """
 Palindrome class realization.
+
+GitHub link: https://github.com/DariaMinieieva/Palindromes
 """
 
 from arraystack import ArrayStack
@@ -17,13 +19,14 @@ class Palindrome:
         self.input_file = input_file
         self.output_file = output_file
 
-    def read_file(self) -> list:
+    @staticmethod
+    def read_file(input_file) -> list:
         '''
         Read words from file
         '''
         res = []
 
-        with open(self.input_file, "r", encoding="utf-8") as inpt:
+        with open(input_file, "r", encoding="utf-8") as inpt:
             for line in inpt:
                 line = line.strip().split()[0]
 
@@ -34,11 +37,12 @@ class Palindrome:
 
         return res
 
-    def write_to_file(self, res):
+    @staticmethod
+    def write_to_file(output_file, res):
         '''
         Write words to file
         '''
-        with open(self.output_file, "w", encoding="utf-8") as otpt:
+        with open(output_file, "w", encoding="utf-8") as otpt:
             for line in res:
                 otpt.write(line + "\n")
 
@@ -51,7 +55,7 @@ class Palindrome:
         self.input_file = input_file
         self.output_file = output_file
 
-        words = self.read_file()
+        words = self.read_file(self.input_file)
 
         for word in words:
             word_lst = list(word)
@@ -70,7 +74,7 @@ class Palindrome:
             if flag:
                 palindroms.append("".join(word))
 
-        self.write_to_file(palindroms)
+        self.write_to_file(self.output_file, palindroms)
         return palindroms
 
 
